@@ -21,22 +21,24 @@ private:
     Node* tail;
 
 public:
+    //Good default constructor to create empty DLLs
     DoublyLinkedList() { head = nullptr; tail = nullptr; }
 
+    //Input value and position, generate a new node with the data and insert it into the current DLL input position
     void insert_after(int value, int position) {
-        if (position < 0) {
+        if (position < 0) {//Check that the position is positive
             cout << "Position must be >= 0." << endl;
             return;
         }
 
         Node* newNode = new Node(value);
-        if (!head) {
+        if (!head) {//Check if the current DLL is empty
             head = tail = newNode;
             return;
         }
 
         Node* temp = head;
-        for (int i = 0; i < position && temp; ++i)
+        for (int i = 0; i < position && temp; ++i)//Loop to find the position,
             temp = temp->next;
 
         if (!temp) {
