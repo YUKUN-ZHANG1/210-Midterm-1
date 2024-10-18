@@ -1,3 +1,6 @@
+// COMSC-210 | Midterm #1 | Yukun Zhang
+// IDE used: Visual Studio Code
+
 #include <iostream>
 using namespace std;
 
@@ -219,10 +222,17 @@ public:
     //Ignores all elements in even positions, and outputs only those in odd positions.
     void every_other_element() {
         Node* current = head;
+        int count = 1;
         if (!current) {//nothing in the DLL
             cout << "List is empty." << endl;
             return;
         }
+        while (current) {//traverse all nodes from head
+            if (count % 2 == 1) //If the element is in an odd position, output
+                cout << current->data << " ";
+            current = current->next;
+        }
+        cout << endl;
     }
 
 };
