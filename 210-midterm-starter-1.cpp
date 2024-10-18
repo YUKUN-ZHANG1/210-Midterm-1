@@ -153,62 +153,78 @@ public:
         Node * temp = head;
 
         if (head->next) {//if this is not the last node in the DLL
-            head = head->next;//update head
+            head = head->next;//update head to next one
             head->prev = nullptr;
         }
         else
-            head = tail = nullptr;//update head and tail, now the DLL is
-        delete temp;
+            head = tail = nullptr;//update head and tail, now the DLL is empty
+        delete temp;//delete node
     }
 
+    //delete the node pointed to by tail
     void pop_back() {
-        if (!tail) {
+        if (!tail) {//if DLL is empty
             cout << "List is empty." << endl;
-            return;
+            return;//do nothing
         }
         Node * temp = tail;
 
-        if (tail->prev) {
-            tail = tail->prev;
+        if (tail->prev) {//if this is not the last node in the DLL
+            tail = tail->prev;//update tail to the previous one
             tail->next = nullptr;
         }
         else
-            head = tail = nullptr;
-        delete temp;
+            head = tail = nullptr;//update head and tail, now the DLL is empty
+        delete temp;//delete node
     }
 
+    //destructor, completely deletes the node within each DLL, freeing up memory
     ~DoublyLinkedList() {
-        while (head) {
+        while (head) {//traverse and delete all nodes
             Node* temp = head;
             head = head->next;
             delete temp;
         }
     }
+
+    //output data in DLL, fron head to tail
     void print() {
         Node* current = head;
-        if (!current) {
+        if (!current) {//nothing in the DLL
             cout << "List is empty." << endl;
             return;
         }
-        while (current) {
+        while (current) {//traverse all nodes from head, output all data
             cout << current->data << " ";
             current = current->next;
         }
         cout << endl;
     }
 
+    //output data in DLL, fron head to tail
     void print_reverse() {
         Node* current = tail;
-        if (!current) { 
+        if (!current) { //nothing in the DLL
             cout << "List is empty." << endl;
             return;
         }
-        while (current) {
+        while (current) {//traverse all nodes from tail, output all data
             cout << current->data << " ";
             current = current->prev;
         }
         cout << endl;
     }
+
+    //My output function
+    //Ignores all elements in even positions, and outputs only those in odd positions.
+    void every_other_element() {
+        Node* current = head;
+        if (!current) {//nothing in the DLL
+            cout << "List is empty." << endl;
+            return;
+        }
+    }
+
 };
 
 int main() {
