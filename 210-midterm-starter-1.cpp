@@ -56,57 +56,58 @@ public:
         temp->next = newNode;
     }
 
-    //Delete the a node in DLL by search 
+    //Delete the a node in DLL by search data
     void delete_val(int value) {
         if (!head) return; //If it is empty
 
         Node* temp = head;
         
-        while (temp && temp->data != value)//
+        while (temp && temp->data != value)//Find the node that contains the target data
             temp = temp->next;
 
-        if (!temp) return; 
+        if (!temp) return; //didn't find it
 
         if (temp->prev)
             temp->prev->next = temp->next;
-        else
+        else// if it is head, change the head
             head = temp->next; 
 
         if (temp->next)
             temp->next->prev = temp->prev;
-        else
+        else// if it is head, change the tail
             tail = temp->prev; 
 
         delete temp;
     }
 
+    //Delete the a node in DLL by position
     void delete_pos(int pos) {
-        if (!head) {
+        if (!head) {// if DLL is empty
             cout << "List is empty." << endl;
             return;
         }
     
-        if (pos == 1) {
+        if (pos == 1) {//Delete the head
             pop_front();
             return;
         }
     
         Node* temp = head;
     
-        for (int i = 1; i < pos; i++){
-            if (!temp) {
+        for (int i = 1; i < pos; i++){//find position
+            if (!temp) {//position too large
                 cout << "Position doesn't exist." << endl;
                 return;
             }
             else
                 temp = temp->next;
         }
-        if (!temp) {
+        if (!temp) {//position too large
             cout << "Position doesn't exist." << endl;
             return;
         }
     
-        if (!temp->next) {
+        if (!temp->next) {//is 
             pop_back();
             return;
         }
