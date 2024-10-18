@@ -5,11 +5,12 @@ const int MIN_NR = 10, MAX_NR = 99, MIN_LS = 5, MAX_LS = 20;
 
 class DoublyLinkedList {
 private:
+    //The node structure, containing an int data, a pointer to the front node and a pointer to the back node.
     struct Node {
         int data;
         Node* prev;
         Node* next;
-        Node(int val, Node* p = nullptr, Node* n = nullptr) {
+        Node(int val, Node* p = nullptr, Node* n = nullptr) {//Constructors with default initial values can either complete the default initialization with just int val, or add the required prev or next pointers.
             data = val; 
             prev = p;
             next = n;
