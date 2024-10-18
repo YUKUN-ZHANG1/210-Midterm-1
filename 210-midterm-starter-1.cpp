@@ -24,7 +24,7 @@ public:
     //Good default constructor to create empty DLLs
     DoublyLinkedList() { head = nullptr; tail = nullptr; }
 
-    //Input value and position, generate a new node with the data and insert it into the current DLL input position
+    //Input value and position, generate a new node with the data and insert it into the current DLL with the input position
     void insert_after(int value, int position) {
         if (position < 0) {//Check that the position is positive
             cout << "Position must be >= 0." << endl;
@@ -38,30 +38,31 @@ public:
         }
 
         Node* temp = head;
-        for (int i = 0; i < position && temp; ++i)//Loop to find the position,
+        for (int i = 0; i < position && temp; ++i)//Loop to find the position, 
             temp = temp->next;
 
-        if (!temp) {
+        if (!temp) {//position is too large
             cout << "Position exceeds list size. Node not inserted.\n";
             delete newNode;
             return;
         }
 
-        newNode->next = temp->next;
+        newNode->next = temp->next;//Insert node
         newNode->prev = temp;
-        if (temp->next)
+        if (temp->next)//If it's not the last one
             temp->next->prev = newNode;
         else
             tail = newNode;
         temp->next = newNode;
     }
 
+    //Delete the a node in DLL by search 
     void delete_val(int value) {
-        if (!head) return;
+        if (!head) return; //If it is empty
 
         Node* temp = head;
         
-        while (temp && temp->data != value)
+        while (temp && temp->data != value)//
             temp = temp->next;
 
         if (!temp) return; 
