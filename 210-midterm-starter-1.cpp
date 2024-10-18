@@ -107,54 +107,57 @@ public:
             return;
         }
     
-        if (!temp->next) {//is 
+        if (!temp->next) {//is tail, delete tail
             pop_back();
             return;
         }
     
-        Node* tempPrev = temp->prev;
+        Node* tempPrev = temp->prev;//delete a non-tail, non-head node
         tempPrev->next = temp->next;
         temp->next->prev = tempPrev;
         delete temp;
     }
 
+    //Accept an int, generate a new node to add to the tail
     void push_back(int v) {
         Node* newNode = new Node(v);
-        if (!tail)
-            head = tail = newNode;
+        if (!tail)//if DLL is empty
+            head = tail = newNode;//insert as the first and last node
         else {
-            tail->next = newNode;
+            tail->next = newNode;//insert to tail, and update tail only
             newNode->prev = tail;
             tail = newNode;
         }
     }
     
+    //Accept an int, generate a new node to add to the head
     void push_front(int v) {
         Node* newNode = new Node(v);
-        if (!head)
-            head = tail = newNode;
+        if (!head)//if DLL is empty
+            head = tail = newNode;//insert as the first and last node
         else {
-            newNode->next = head;
+            newNode->next = head;//insert to head, and update head only
             head->prev = newNode;
             head = newNode;
         }
     }
     
+    //delete the node pointed to by head
     void pop_front() {
 
-        if (!head) {
+        if (!head) {//if DLL is empty
             cout << "List is empty." << endl;
-            return;
+            return;//do nothing
         }
 
         Node * temp = head;
 
-        if (head->next) {
-            head = head->next;
+        if (head->next) {//if this is not the last node in the DLL
+            head = head->next;//update head
             head->prev = nullptr;
         }
         else
-            head = tail = nullptr;
+            head = tail = nullptr;//update head and tail, now the DLL is
         delete temp;
     }
 
